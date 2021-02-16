@@ -29,3 +29,10 @@ void print_hex_table(uint8_t *hex_table,uint8_t len){
 	}
 	printf("\r\n");
 }
+
+void hex_table_to_ascii(uint8_t *hex_table,uint8_t hex_table_len,uint8_t *rxbuf){
+	for(uint8_t i = 0;i < hex_table_len;i++){
+		HALFHEX2ASCII(rxbuf[2 * i],hex_table[i] >> 4);
+		HALFHEX2ASCII(rxbuf[2 * i + 1],hex_table[i] & 0x0F);
+	}
+}
